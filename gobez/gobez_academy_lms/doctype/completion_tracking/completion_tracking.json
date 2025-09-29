@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-28 01:57:41.279605",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "competition",
+  "course",
+  "submission",
+  "mark",
+  "mark_out_off",
+  "speed",
+  "speed_copy",
+  "user",
+  "name1"
+ ],
+ "fields": [
+  {
+   "fieldname": "competition",
+   "fieldtype": "Link",
+   "label": "Competition",
+   "options": "Competition"
+  },
+  {
+   "fieldname": "submission",
+   "fieldtype": "Link",
+   "label": "Submission",
+   "options": "LMS Quiz Submission"
+  },
+  {
+   "fieldname": "mark",
+   "fieldtype": "Int",
+   "label": "Mark"
+  },
+  {
+   "fetch_from": "speed_copy.duration",
+   "fieldname": "speed",
+   "fieldtype": "Link",
+   "label": "Speed",
+   "options": "LMS Quiz Result"
+  },
+  {
+   "fetch_from": "submission.member",
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "label": "User"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "LMS Course"
+  },
+  {
+   "fetch_from": "submission.score_out_of",
+   "fieldname": "mark_out_off",
+   "fieldtype": "Int",
+   "label": "Mark Out Off"
+  },
+  {
+   "fetch_from": "submission.member_name",
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "speed_copy",
+   "fieldtype": "Link",
+   "label": "Speed Copy",
+   "options": "LMS Quiz"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-28 02:12:04.121255",
+ "modified_by": "Administrator",
+ "module": "Gobez Academy LMS",
+ "name": "Completion Tracking",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

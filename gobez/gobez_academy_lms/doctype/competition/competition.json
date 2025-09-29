@@ -32,7 +32,7 @@
    "fieldname": "enrollment",
    "fieldtype": "Link",
    "label": "Enrollment",
-   "options": "LMS Enrollment"
+   "options": "LMS Batch Enrollment"
   },
   {
    "fieldname": "start_date",
@@ -53,7 +53,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-04 01:46:51.720598",
+ "modified": "2025-09-28 01:56:38.963826",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Competition",
