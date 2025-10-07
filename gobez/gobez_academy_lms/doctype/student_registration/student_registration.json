@@ -24,19 +24,18 @@
  ],
  "fields": [
   {
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Student Name",
-   "reqd": 1
+   "label": "Student Name"
   },
   {
    "depends_on": "eval:doc.i_am===\"Student\"",
    "fieldname": "student_email",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Student Email",
-   "unique": 1
+   "label": "Student Email"
   },
   {
    "fieldname": "grade",
@@ -58,48 +57,49 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Parent Email ",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\""
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'"
   },
   {
-   "depends_on": "eval:doc.i_am===\"Parent\"",
+   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "fieldname": "parent_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Parent Name ",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\""
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'"
   },
   {
-   "depends_on": "eval:doc.i_am===\"Parent\"",
+   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "fieldname": "parent_username",
    "fieldtype": "Data",
    "label": "Parent Username",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\""
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'"
   },
   {
-   "depends_on": "eval:doc.i_am===\"Parent\"",
+   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "fieldname": "parent_password",
    "fieldtype": "Password",
    "label": "Parent Password",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\""
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'"
   },
   {
-   "depends_on": "eval:doc.i_am===\"Parent\"",
+   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "fieldname": "parent_phone",
    "fieldtype": "Data",
    "label": "Parent Phone",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\""
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'"
   },
   {
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_username",
    "fieldtype": "Data",
-   "label": "Student Username",
-   "reqd": 1
+   "label": "Student Username"
   },
   {
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_password",
    "fieldtype": "Password",
    "label": "Student Password",
-   "reqd": 1
+   "mandatory_depends_on": "eval:frappe.session.user != 'Guest' && doc.i_am !=\"Student\""
   },
   {
    "fieldname": "i_am",
@@ -134,7 +134,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-08 19:49:01.503779",
+ "modified": "2025-09-20 23:20:00.713011",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Student Registration",

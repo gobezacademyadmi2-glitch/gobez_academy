@@ -19,7 +19,9 @@
   "end",
   "payment",
   "subscription",
-  "batch_description"
+  "batch_description",
+  "relative_total",
+  "tx_ref_total"
  ],
  "fields": [
   {
@@ -67,6 +69,7 @@
    "options": "User"
   },
   {
+   "default": "Not Started",
    "fieldname": "payment",
    "fieldtype": "Select",
    "label": "Payment",
@@ -79,7 +82,7 @@
    "label": "Grade"
   },
   {
-   "fetch_from": "mail.phone",
+   "fetch_from": "tx_ref.parent_phone",
    "fieldname": "parent_phone",
    "fieldtype": "Data",
    "label": "Parent Phone"
@@ -106,12 +109,22 @@
    "fieldname": "batch_description",
    "fieldtype": "Small Text",
    "label": "Batch Description"
+  },
+  {
+   "fieldname": "relative_total",
+   "fieldtype": "Data",
+   "label": "Relative Total"
+  },
+  {
+   "fieldname": "tx_ref_total",
+   "fieldtype": "Data",
+   "label": "Tx Ref Total"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-07 04:59:26.179977",
+ "modified": "2025-09-20 22:56:43.199052",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Registration",

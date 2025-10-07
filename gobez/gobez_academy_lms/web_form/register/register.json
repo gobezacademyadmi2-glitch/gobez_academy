@@ -8,10 +8,10 @@
  "anonymous": 0,
  "apply_document_permissions": 0,
  "banner_image": "/files/bannerGobez registration.jpeg",
- "button_label": "register",
- "client_script": "// \ud83c\udf10 Runs when the Student Registration web form loads\nconsole.log(\"Student Registration Web Form loaded\");\nconsole.log(\"Current user:\", frappe.session.user);\n\n// \ud83e\uddd1\u200d\ud83d\udcbc If user is logged in (not Guest), try to auto-fill parent fields\n\nif (frappe.session.user !== 'Guest') {\n    frappe.call({\n        method: 'frappe.client.get_value',\n        args: {\n            doctype: 'User',\n            fieldname: ['full_name', 'email'],\n            filters: { name: frappe.session.user }\n        },\n        callback: function(r) {\n            if (r.message) {\n                const user = r.message;\n                const parentName = user.full_name;\n                const parentEmail = user.email;\n                const parentUsername = user.email.split('@')[0]; // Simple username from email\n\n                // Set values only if fields exist (safe)\n                frappe.web_form.set_value('parent_name', parentName);\n                frappe.web_form.set_value('parent_email', parentEmail);\n                frappe.web_form.set_value('parent_username', parentUsername);\n\n                // Optional: Show message\n                frappe.msgprint({\n                    message: 'Welcome back!',\n                    title: 'Auto-fill Complete',\n                    indicator: 'green'\n                });\n            }\n        }\n    });\n} else {\n    console.log(\"Guest user \u2014 parent fields will be validated on submit\");\n}\n\n// \ud83d\udd01 Optional: React when 'i_am' field changes (e.g. Parent / Student)\nfrappe.web_form.on('i_am', function(field, value) {\n    console.log(\"Registration as:\", value);\n});\n\n// \u2705 Validation: Enforce parent fields only if Guest and registering as Parent\nfrappe.web_form.validate = function() {\n    const user = frappe.session.user;\n    const iAm = frappe.web_form.get_value('i_am');\n\n    // Only validate if Guest and registering as Parent\n    if (user === 'Guest' && iAm === 'Parent') {\n        const parentEmail = frappe.web_form.get_value('parent_email');\n        const parentUsername = frappe.web_form.get_value('parent_username');\n        const parentPhone = frappe.web_form.get_value('parent_phone');\n\n        const missing = [];\n        if (!parentEmail) missing.push('Parent Email');\n        if (!parentUsername) missing.push('Parent Username');\n        if (!parentPhone) missing.push('Parent Phone');\n\n        if (missing.length > 0) {\n            frappe.msgprint({\n                message: `Please fill in the following required fields:<br><br><ul><li>${missing.join('</li><li>')}</li></ul>`,\n                title: 'Missing Information',\n                indicator: 'red'\n            });\n            return false; // Prevent form submission\n        }\n    }\n\n    // \u2705 All validations passed\n    return true;\n};   \n",
+ "button_label": "Register",
+ "client_script": "// \ud83c\udf10 Runs when the Student Registration web form loads\nconsole.log(\"Student Registration Web Form loaded\");\nconsole.log(\"Current user:\", frappe.session.user);\n\n// \ud83e\uddd1\u200d\ud83d\udcbc If user is logged in (not Guest), try to auto-fill parent fields\n\n\n// \ud83d\udd01 Optional: React when 'i_am' field changes (e.g. Parent / Student)\nfrappe.web_form.on('i_am', function(field, value) {\n    console.log(\"Registration as:\", value);\n    const iAm = frappe.web_form.get_value('i_am');\n    if (frappe.session.user !== 'Guest' && iAm === 'Student') {\n    frappe.call({\n        method: 'frappe.client.get_value',\n        args: {\n            doctype: 'User',\n            fieldname: [ 'email','role_profile_name'],\n            filters: { name: frappe.session.user }\n        },\n        callback: function(r) {\n            if (r.message) {\n                const user = r.message;\n                //const parentName = user.full_name;\n                const studentEmail = user.email;\n                //const parentUsername = user.email.split('@')[0]; // Simple username from email\n\n                // Set values only if fields exist (safe)\n                //frappe.web_form.set_value('parent_name', parentName);\n                frappe.web_form.set_value('student_email', studentEmail);\n                frappe.web_form.set_df_property('student_email', 'read_only', 1);\n                //frappe.web_form.set_value('parent_username', parentUsername);\n\n                // Optional: Show message\n                frappe.msgprint({\n                    message: 'Welcome back!',\n                    title: 'Auto-fill Complete',\n                    indicator: 'green'\n                });\n            }\n        }\n    });\n} else if (frappe.session.user !== 'Guest' && iAm === 'Parent' ) {\n    frappe.call({\n        method: 'frappe.client.get_value',\n        args: {\n            doctype: 'User',\n            fieldname: [ 'email','role_profile_name'],\n            filters: { name: frappe.session.user }\n        },\n        callback: function(r) {\n            if (r.message) {\n                const user = r.message;\n                //const parentName = user.full_name;\n                const parentEmail = user.email;\n                //const parentUsername = user.email.split('@')[0]; // Simple username from email\n\n                // Set values only if fields exist (safe)\n                //frappe.web_form.set_value('parent_name', parentName);\n                frappe.web_form.set_value('parent_email', parentEmail);\n                frappe.web_form.set_df_property('parent_email', 'read_only', 1);\n                //frappe.web_form.set_value('parent_username', parentUsername);\n\n                // Optional: Show message\n                frappe.msgprint({\n                    message: 'Welcome back!',\n                    title: 'Auto-fill Complete',\n                    indicator: 'green'\n                });\n            }\n        }\n    });\n}  \n\nelse {\n    console.log(\"Guest user \u2014 Student fields will be validated on submit\");\n}\n});\n\n// \u2705 Validation: Enforce parent fields only if Guest and registering as Parent\nfrappe.web_form.validate = function() {\n    const user = frappe.session.user;\n    const iAm = frappe.web_form.get_value('i_am');\n\n    // Only validate if Guest and registering as Parent\n    if (user === 'Guest' && iAm === 'Parent') {\n        const parentEmail = frappe.web_form.get_value('parent_email');\n        const parentUsername = frappe.web_form.get_value('parent_username');\n        const parentPhone = frappe.web_form.get_value('parent_phone');\n\n        const missing = [];\n        if (!parentEmail) missing.push('Parent Email');\n        if (!parentUsername) missing.push('Parent Username');\n        if (!parentPhone) missing.push('Parent Phone');\n\n        if (missing.length > 0) {\n            frappe.msgprint({\n                message: `Please fill in the following required fields:<br><br><ul><li>${missing.join('</li><li>')}</li></ul>`,\n                title: 'Missing Information',\n                indicator: 'red'\n            });\n            return false; // Prevent form submission\n        }\n    }\n\n    // \u2705 All validations passed\n    return true;\n};\n",
  "condition_json": "[]",
- "creation": "2025-09-04 23:28:13.013845",
+ "creation": "2025-09-19 06:19:03.704091",
  "doc_type": "Student Registration",
  "docstatus": 0,
  "doctype": "Web Form",
@@ -21,19 +21,20 @@
  "list_columns": [],
  "login_required": 0,
  "max_attachment_size": 0,
- "modified": "2025-09-18 06:24:12.996205",
+ "meta_image": "/files/gobezhomeherobg.png",
+ "modified": "2025-09-21 01:33:37.934321",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
- "name": "ahmed",
+ "name": "register",
  "owner": "Administrator",
  "published": 1,
  "route": "register",
  "show_attachments": 0,
  "show_list": 0,
  "show_sidebar": 1,
- "success_message": "Almost done! Please sign in to pay to complete registration and start using Gobez Academy Online Learning.",
- "success_title": "Redirecting to Payment",
- "success_url": "/login?redirect-to=%2Fchapa%2Fcheckout",
+ "success_message": "Bravo almost done only one step left. You are being redirected to your cart page.",
+ "success_title": "Details added Successfully!",
+ "success_url": "/gobez/checkout-grand",
  "title": "Register",
  "web_form_fields": [
   {
@@ -70,7 +71,7 @@
    "fieldtype": "Data",
    "hidden": 0,
    "label": "Parent Email ",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\"",
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "max_length": 0,
    "max_value": 0,
    "precision": "",
@@ -85,7 +86,7 @@
    "fieldtype": "Data",
    "hidden": 0,
    "label": "Parent Name ",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user === \"Guest\"",
+   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "max_length": 0,
    "max_value": 0,
    "precision": "",
@@ -95,7 +96,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user === 'Guest'",
+   "depends_on": "eval:doc.i_am===\"Parent\" && frappe.session.user == 'Guest'",
    "fieldname": "parent_username",
    "fieldtype": "Data",
    "hidden": 0,
@@ -153,6 +154,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_name",
    "fieldtype": "Data",
    "hidden": 0,
@@ -162,7 +164,7 @@
    "max_value": 0,
    "precision": "",
    "read_only": 0,
-   "reqd": 1,
+   "reqd": 0,
    "show_in_filter": 0
   },
   {
@@ -172,7 +174,7 @@
    "fieldtype": "Data",
    "hidden": 0,
    "label": "Student Email",
-   "mandatory_depends_on": "eval:doc.i_am===\"Parent\" ",
+   "mandatory_depends_on": "",
    "max_length": 0,
    "max_value": 0,
    "precision": "",
@@ -182,6 +184,7 @@
   },
   {
    "allow_read_on_all_link_options": 0,
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_username",
    "fieldtype": "Data",
    "hidden": 0,
@@ -190,21 +193,22 @@
    "max_value": 0,
    "precision": "",
    "read_only": 0,
-   "reqd": 1,
+   "reqd": 0,
    "show_in_filter": 0
   },
   {
    "allow_read_on_all_link_options": 0,
-   "depends_on": "eval:frappe.session.user == 'Guest'",
+   "depends_on": "eval:frappe.session.user == 'Guest' || (frappe.session.user != \"Guest\" && doc.i_am ===\"Parent\")",
    "fieldname": "student_password",
    "fieldtype": "Password",
    "hidden": 0,
    "label": "Student Password",
+   "mandatory_depends_on": "eval:frappe.session.user != 'Guest' && doc.i_am !=\"Student\"",
    "max_length": 0,
    "max_value": 0,
    "precision": "",
    "read_only": 0,
-   "reqd": 1,
+   "reqd": 0,
    "show_in_filter": 0
   },
   {
@@ -235,5 +239,6 @@
    "reqd": 1,
    "show_in_filter": 0
   }
- ]
+ ],
+ "website_sidebar": "Gobez Sidebar"
 }

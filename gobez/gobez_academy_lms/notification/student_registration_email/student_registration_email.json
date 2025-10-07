@@ -1,0 +1,33 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "",
+ "creation": "2025-09-23 20:48:11.442037",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Student Registration",
+ "enabled": 1,
+ "event": "Save",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Registration ID {{doc.name}} {{doc.grade}} by {{doc.i_am}} for {{doc.student_name}} student email {{doc.student_email}}</p>\n",
+ "message_type": "Markdown",
+ "modified": "2025-09-23 21:56:21.408181",
+ "modified_by": "Administrator",
+ "module": "Gobez Academy LMS",
+ "name": "Student Registration Email",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Moderator"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "sender": "Gobez Support",
+ "sender_email": "gobezacademy1@gmail.com",
+ "set_property_after_alert": "",
+ "subject": "Subscription {{doc.subscription}}",
+ "value_changed": "state"
+}

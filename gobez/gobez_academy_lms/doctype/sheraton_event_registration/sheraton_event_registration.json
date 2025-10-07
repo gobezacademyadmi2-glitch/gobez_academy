@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-09-19 07:42:07.324278",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "role",
+  "if_other_fill_this",
+  "ngo_or_school_name",
+  "number_of_students_to_register",
+  "full_name",
+  "subscription",
+  "grade_if_students",
+  "phone",
+  "email"
+ ],
+ "fields": [
+  {
+   "fieldname": "role",
+   "fieldtype": "Select",
+   "label": "Role",
+   "options": "NGO\nSchools\nParent\nTeacher\nStudent\nOther"
+  },
+  {
+   "fieldname": "if_other_fill_this",
+   "fieldtype": "Data",
+   "label": "If other fill this"
+  },
+  {
+   "fieldname": "ngo_or_school_name",
+   "fieldtype": "Data",
+   "label": "NGO or School Name"
+  },
+  {
+   "fieldname": "number_of_students_to_register",
+   "fieldtype": "Int",
+   "label": "Number of Students to Register"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "subscription",
+   "fieldtype": "Link",
+   "label": "Subscription",
+   "options": "Subscription"
+  },
+  {
+   "fieldname": "grade_if_students",
+   "fieldtype": "Link",
+   "label": "Grade if students ",
+   "options": "LMS Batch"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Phone",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-19 07:50:28.876957",
+ "modified_by": "Administrator",
+ "module": "Gobez Academy LMS",
+ "name": "Sheraton Event Registration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
