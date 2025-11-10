@@ -36,5 +36,24 @@
   "reference_doctype": null,
   "script": "today = frappe.utils.get_datetime()\nfrappe.log_error(f\"Starting unenrollment process for date: {today}\")\n\n# Get all registrations with expired end dates but still marked as Verified\nexpired_registrations = frappe.get_all(\n    \"Registration\",\n    filters=[\n        [\"end\", \"<\", today],\n        [\"payment\", \"=\", \"Verified\"]\n    ],\n    fields=[\"name\", \"student\", \"batch\", \"mail\", \"end\"]\n)\n\nfrappe.log_error(f\"Found {len(expired_registrations)} expired registrations to process\")\n\nfor reg in expired_registrations:\n    try:\n        frappe.log_error(f\"Processing registration {reg.name} for student {reg.student}, end date: {reg.end}\")\n        \n        # Find the enrollment for this student and batch\n        enrollments = frappe.get_all(\n            \"LMS Batch Enrollment\",\n            filters=[\n                [\"member\", \"=\", reg.student],\n                [\"batch\", \"=\", reg.batch]\n            ],\n            fields=[\"name\"]\n        )\n        \n        # Delete the enrollment if it exists\n        if enrollments:\n            for enroll in enrollments:\n                frappe.delete_doc(\"LMS Batch Enrollment\", enroll.name)\n                frappe.log_error(f\"Unenrolled student {reg.student} from batch {reg.batch}\")\n        \n        # Update the registration payment status to \"To Renew\"\n        frappe.db.set_value(\"Registration\", reg.name, \"payment\", \"To Renew\")\n        frappe.log_error(f\"Updated registration {reg.name} to 'To Renew' status\")\n        \n        # Commit after each successful registration update\n        frappe.db.commit()\n        \n    except Exception as e:\n        frappe.log_error(f\"Error processing registration {reg.name}: {str(e)}\")\n        frappe.db.rollback()  # Rollback on error\n        continue\n\nfrappe.log_error(\"Unenrollment process completed\")",
   "script_type": "Scheduler Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2025-11-09 03:56:59.692788",
+  "module": null,
+  "name": "Referral Script",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "User",
+  "script": "code = frappe.utils.generate_hash(\"token\")[:8]\nreferral_exists = frappe.db.exists(\"Referral\",doc.name)\nif not referral_exists:\n    ref= frappe.new_doc(\"Referral\")\n    #ref.name = code\n    ref.code = code\n    ref.user = doc.name\n    \n    ref.db_insert()\nelse:\n    pass",
+  "script_type": "DocType Event"
  }
 ]
