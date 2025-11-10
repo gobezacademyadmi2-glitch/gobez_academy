@@ -1,26 +1,87 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:user",
  "creation": "2025-11-06 01:07:43.789439",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "code"
+  "code",
+  "user",
+  "payable",
+  "paid",
+  "payment_option",
+  "payment_phone",
+  "bank",
+  "account_number",
+  "referred"
  ],
  "fields": [
   {
    "fieldname": "code",
    "fieldtype": "Data",
-   "label": "Code"
+   "in_list_view": 1,
+   "label": "Code",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "payable",
+   "fieldtype": "Data",
+   "label": "Payable"
+  },
+  {
+   "fieldname": "paid",
+   "fieldtype": "Data",
+   "label": "Paid"
+  },
+  {
+   "fieldname": "referred",
+   "fieldtype": "Table",
+   "label": "Referred",
+   "options": "Referred User"
+  },
+  {
+   "fieldname": "payment_option",
+   "fieldtype": "Select",
+   "label": "Payment Option",
+   "options": "Telebirr\nMpesa\nCBEbirr\nEbirr\nBank"
+  },
+  {
+   "depends_on": "eval:doc.payment_option===\"Bank\"",
+   "fieldname": "bank",
+   "fieldtype": "Select",
+   "label": "Bank",
+   "options": "\nZamZam Bank\nHijra Bank\nRammis Bank\nShabelle Bank\nHibret Bank\nBank of Abyssinia\nDashen Bank\nAwash International Bank\nCommercial Bank of Ethiopia\nCooperative Bank of Oromia\nAbay Bank\nWegagen Bank\nZemen Bank\nBunna Bank\nBerhan Bank\nAddis International Bank\nAmhara Bank"
+  },
+  {
+   "depends_on": "eval:doc.payment_option===\"Bank\"",
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "depends_on": "eval:doc.payment_option != \"Bank\"",
+   "fieldname": "payment_phone",
+   "fieldtype": "Data",
+   "label": "Payment Phone"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-06 01:08:12.290455",
+ "modified": "2025-11-09 03:53:44.868073",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referral",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

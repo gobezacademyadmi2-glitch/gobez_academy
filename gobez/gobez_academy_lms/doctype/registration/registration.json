@@ -19,7 +19,8 @@
   "end",
   "payment",
   "subscription",
-  "batch_description"
+  "batch_description",
+  "referrer_code"
  ],
  "fields": [
   {
@@ -106,12 +107,17 @@
    "fieldname": "batch_description",
    "fieldtype": "Small Text",
    "label": "Batch Description"
+  },
+  {
+   "fieldname": "referrer_code",
+   "fieldtype": "Data",
+   "label": "Referrer Code"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-07 04:59:26.179977",
+ "modified": "2025-11-09 04:32:56.994894",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Registration",
