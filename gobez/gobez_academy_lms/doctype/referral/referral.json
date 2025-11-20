@@ -14,7 +14,9 @@
   "payment_phone",
   "bank",
   "account_number",
-  "referred"
+  "referred",
+  "referred_user",
+  "referred_by_code"
  ],
  "fields": [
   {
@@ -35,6 +37,7 @@
   {
    "fieldname": "payable",
    "fieldtype": "Data",
+   "is_virtual": 1,
    "label": "Payable"
   },
   {
@@ -72,12 +75,23 @@
    "fieldname": "payment_phone",
    "fieldtype": "Data",
    "label": "Payment Phone"
+  },
+  {
+   "default": "0",
+   "fieldname": "referred_user",
+   "fieldtype": "Check",
+   "label": "Referred User"
+  },
+  {
+   "fieldname": "referred_by_code",
+   "fieldtype": "Data",
+   "label": "Referred By Code"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-09 03:53:44.868073",
+ "modified": "2025-11-20 00:31:52.812898",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referral",

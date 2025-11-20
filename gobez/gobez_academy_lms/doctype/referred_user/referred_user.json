@@ -46,9 +46,8 @@
    "label": "Amount"
   },
   {
-   "fetch_from": "registration.start",
    "fieldname": "date",
-   "fieldtype": "Date",
+   "fieldtype": "Datetime",
    "label": "Date"
   },
   {
@@ -68,7 +67,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-09 02:09:35.545848",
+ "modified": "2025-11-20 02:20:39.427026",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referred User",
