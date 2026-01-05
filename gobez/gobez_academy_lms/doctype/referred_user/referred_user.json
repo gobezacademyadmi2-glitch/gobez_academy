@@ -6,13 +6,16 @@
  "engine": "InnoDB",
  "field_order": [
   "referred_user",
+  "full_name",
+  "registration_name",
   "subscription",
   "grade",
   "status",
   "registration",
   "amount",
   "date",
-  "tx_ref"
+  "tx_ref",
+  "commission"
  ],
  "fields": [
   {
@@ -61,13 +64,31 @@
    "fieldname": "tx_ref",
    "fieldtype": "Data",
    "label": "Tx Ref"
+  },
+  {
+   "fetch_from": "referred_user.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name "
+  },
+  {
+   "fetch_from": "registration.mail",
+   "fieldname": "registration_name",
+   "fieldtype": "Data",
+   "label": "Registration Name"
+  },
+  {
+   "fieldname": "commission",
+   "fieldtype": "Select",
+   "label": "Commission",
+   "options": "pending\nPaid"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-20 02:20:39.427026",
+ "modified": "2025-12-18 02:04:05.709118",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referred User",

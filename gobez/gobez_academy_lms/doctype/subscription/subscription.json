@@ -10,7 +10,9 @@
   "month",
   "packages",
   "price",
-  "duration"
+  "referral_discount",
+  "duration",
+  "subscription_image"
  ],
  "fields": [
   {
@@ -45,12 +47,23 @@
    "fieldtype": "Select",
    "label": "Packages",
    "options": "Grade Exam\nNational Exam"
+  },
+  {
+   "fieldname": "subscription_image",
+   "fieldtype": "Attach Image",
+   "label": "Subscription Image"
+  },
+  {
+   "fieldname": "referral_discount",
+   "fieldtype": "Float",
+   "label": "Referral Discount",
+   "precision": "2"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-28 22:06:23.729187",
+ "modified": "2026-01-02 22:49:56.886384",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Subscription",

@@ -85,14 +85,13 @@
   {
    "fieldname": "referred_by_code",
    "fieldtype": "Data",
-   "label": "Referred By Code",
-   "set_only_once": 1
+   "label": "Referred By Code"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 03:50:31.074267",
+ "modified": "2026-01-04 01:25:26.253206",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referral",
