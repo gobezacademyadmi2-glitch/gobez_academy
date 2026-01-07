@@ -16,7 +16,8 @@
   "account_number",
   "referred",
   "referred_user",
-  "referred_by_code"
+  "referred_by_code",
+  "used_referral"
  ],
  "fields": [
   {
@@ -86,12 +87,18 @@
    "fieldname": "referred_by_code",
    "fieldtype": "Data",
    "label": "Referred By Code"
+  },
+  {
+   "fieldname": "used_referral",
+   "fieldtype": "Select",
+   "label": "Used Referral",
+   "options": "Yes\nNo\nIn Progress"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-04 01:25:26.253206",
+ "modified": "2026-01-06 23:34:16.738564",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Referral",
