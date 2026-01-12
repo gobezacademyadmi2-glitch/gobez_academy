@@ -238,6 +238,7 @@ app_license = "mit"
 # }
 fixtures = [
     {"dt": "Server Script"},
-    {"dt":"Builder Page"}
+    {"dt":"Builder Page"},
+	{"dt":"Web Form"}
 ]
 
