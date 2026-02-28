@@ -8,11 +8,22 @@
  "field_order": [
   "type",
   "month",
+  "month_float",
   "packages",
   "price",
   "referral_discount",
+  "main_discount",
   "duration",
-  "subscription_image"
+  "subscription_image",
+  "grade",
+  "monthly",
+  "monthly_premium",
+  "three_monthly_premium",
+  "three_monthly",
+  "six_monthly",
+  "six_monthly_premium",
+  "yearly",
+  "yearly_premium"
  ],
  "fields": [
   {
@@ -58,12 +69,76 @@
    "fieldtype": "Float",
    "label": "Referral Discount",
    "precision": "2"
+  },
+  {
+   "fieldname": "month_float",
+   "fieldtype": "Float",
+   "label": "month_float"
+  },
+  {
+   "fieldname": "main_discount",
+   "fieldtype": "Float",
+   "label": "Main Discount"
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Link",
+   "label": "Grade",
+   "options": "LMS Batch"
+  },
+  {
+   "fetch_from": "grade.monthly",
+   "fieldname": "monthly",
+   "fieldtype": "Data",
+   "label": "Monthly"
+  },
+  {
+   "fetch_from": "grade.monthly_premium",
+   "fieldname": "monthly_premium",
+   "fieldtype": "Data",
+   "label": "Monthly Premium"
+  },
+  {
+   "fetch_from": "grade.premium3_month",
+   "fieldname": "three_monthly_premium",
+   "fieldtype": "Data",
+   "label": "Three Monthly Premium"
+  },
+  {
+   "fetch_from": "grade.monththree",
+   "fieldname": "three_monthly",
+   "fieldtype": "Data",
+   "label": "Three Monthly"
+  },
+  {
+   "fetch_from": "grade.month6",
+   "fieldname": "six_monthly",
+   "fieldtype": "Data",
+   "label": "Six Month"
+  },
+  {
+   "fetch_from": "grade.premium6_month",
+   "fieldname": "six_monthly_premium",
+   "fieldtype": "Data",
+   "label": "Six Month Premium"
+  },
+  {
+   "fetch_from": "grade.year1",
+   "fieldname": "yearly",
+   "fieldtype": "Data",
+   "label": "Yearly"
+  },
+  {
+   "fetch_from": "grade.premium1_year",
+   "fieldname": "yearly_premium",
+   "fieldtype": "Data",
+   "label": "Yearly Premium"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-02 22:49:56.886384",
+ "modified": "2026-01-30 17:25:22.683171",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Subscription",

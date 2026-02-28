@@ -12,7 +12,9 @@
   "student",
   "student_name",
   "total",
+  "relative_total",
   "tx_ref",
+  "tx_ref_total",
   "batch",
   "grade",
   "start",
@@ -20,7 +22,8 @@
   "payment",
   "subscription",
   "batch_description",
-  "referrer_code"
+  "referrer_code",
+  "role"
  ],
  "fields": [
   {
@@ -71,7 +74,7 @@
    "fieldname": "payment",
    "fieldtype": "Select",
    "label": "Payment",
-   "options": "\nNot Started\nPending\nVerified\nTo Renew"
+   "options": "\nNot Started\nPending\nVerified\nTo Renew\nAbsolete"
   },
   {
    "fetch_from": "batch.title",
@@ -112,12 +115,28 @@
    "fieldname": "referrer_code",
    "fieldtype": "Data",
    "label": "Referrer Code"
+  },
+  {
+   "fieldname": "relative_total",
+   "fieldtype": "Data",
+   "label": "relative total"
+  },
+  {
+   "fieldname": "tx_ref_total",
+   "fieldtype": "Data",
+   "label": "tx ref total"
+  },
+  {
+   "fetch_from": "tx_ref.i_am",
+   "fieldname": "role",
+   "fieldtype": "Data",
+   "label": "Role"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-09 04:32:56.994894",
+ "modified": "2026-01-30 11:14:56.794722",
  "modified_by": "Administrator",
  "module": "Gobez Academy LMS",
  "name": "Registration",
